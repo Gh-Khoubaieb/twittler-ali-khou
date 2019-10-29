@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="jquery2.js"></script>
+    <script src="data_generator (2).js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+
+    <script>
+
+      $(document).ready(function(){
+        var $body = $('body');
+        $body.html('');
+
+        var index = streams.home.length - 1;
+        while(index >= 0){
+          var tweet = streams.home[index];
+          var $tweet = $('<div class="tweets-div"></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.appendTo($body);
+          
+          index -= 1;
+        
+        }
+
+
+        var newDiv = $('<div></div>');
+        $('body').append(newDiv); 
+
+        var text = $('<input type="text" name="textbox" />');
+        $('body').append(text);
+
+        var button1 = $('<button id="button1">Add</button>')
+        $('body').append(button1)
+        
+        $('#button1').on('click', function(){
+          $tweet.remove();
+          if($(text).val() !== ''){
+          var $tweeto = $('<div class="tweets-div"></div>');
+          tweet = $(text).val();
+          $tweeto.text('@' + tweet + ' ' + new Date());
+          $tweeto.prependTo($body);
+          }
+
+        })
+
+
+
+      })
+      
+
+    </script>
+
+  </body>
+</html>
